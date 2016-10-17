@@ -10,7 +10,7 @@ var db = require('bookshelf')(knex);
 
 db.knex.schema.hasTable('attendees').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('urls', function (attendee) {    //creates 'urls' table
+    db.knex.schema.createTable('attendees', function (attendee) {    //creates 'urls' table
       attendee.increments('id').primary();
       attendee.string('title', 10);
       attendee.string('firstname', 255);
@@ -24,33 +24,5 @@ db.knex.schema.hasTable('attendees').then(function(exists) {
     });
   }
 });
-
-// db.knex.schema.hasTable('clicks').then(function(exists) {
-//   if (!exists) {
-//     db.knex.schema.createTable('clicks', function (click) {   //creates 'clicks' table
-//       click.increments('id').primary();
-//       click.integer('linkId').references('link.id');
-//       //click.integer('linkId');    //adds foreign key from urls table <-- do we need to do more to make this a FK
-//       click.timestamps();
-//     }).then(function (table) {
-//       console.log('Created Table', table);
-//     });
-//   }
-// });
-
-// **********************************************************
-// // Add additional schema definitions below
-// /************************************************************/
-// db.knex.schema.hasTable('users').then(function(exists){
-//   if (!exists) {
-//     db.knex.schema.createTable('users', function(user){
-//       user.increments('id').primary();
-//       user.string('username', 100);
-//       user.string('hash',100);
-//     }).then(function(table) {
-//       console.log('Created Table', table);
-//     });
-//   }
-// });
 
 module.exports = db;
